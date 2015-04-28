@@ -22,16 +22,14 @@ var scrapeGithub = function(filepath, username){
 
 var scrapeTVTropes = function(filepath){
   if (filepath === undefined){filepath = 'tropes.json';}
-  xray('http://tvtropes.org/pmwiki/index_report.php')
-    .select([{
-      $root: 'div.content',
-      text: 'li',
-      link: 'a[href]'
-    }])
-    .paginate('.pagination a:last-child[href]')
-    .limit(10)
+  xray('http://tvtropes.org/pmwiki/pmwiki.php/Main/Tropes')
+    .select([{$root:"li.plus",text:"",link:"a.twikilink[href]"}])
+    .paginate('li.plus .twikilink[href]')
+    .limit(50)
+    .delay(500,3000)
     .write(filepath);
 };
 
 //scrapeGithub();
 scrapeTVTropes('tvtropes.json');
+//scrapeTVTropes(process.stdout);
