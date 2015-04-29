@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Tropevore</title>
+    <script src="lib/jquery.js"></script>    
+    <script src="lib/underscore.js"></script>
+    <script src="lib/boum.js"></script>
+    <script src="src/tvtropes.js"></script>
+    <script type='text/javascript'>
+      (function(){
+        var app = {};
+        var template = {};
+        var css = {
+          body: {
+            "text-align":"center"
+          }, 
+          div: {
+            padding : "10px",
+            margin : "10px",
+            border : "1px solid #333"
+          },
+          "div#tropes": {
+            color : "#333"
+          }, 
+          "div#writing-prompt" : {
+            "font-size" : "2em"
+          }
+        };
+        
+        
+        app.DOM = function(id, template){
+          if ($("#"+id).length===0){
+            $("body").append("<div id='"+id+"'></div>");
+          }
+          $("#"+id).html(template);
+        };
+        app.CSS = function(template){
+          if ($("#synthetic").length===0){
+            $("head").append("<style type='text/css' id='synthetic'></style>");
+          }
+          $("#synthetic").html(template);
+        };
+        
+        template.tropeLinks = function(data){
+          var d = [];
+            for (var i=0;i<data.length;i++){
+              d.push("<a href='"+data[i].link+"'>"+data[i].text+"</a>");
+            }
+          return d.join(" | ");
+        };
+        
+        template.css = function(obj){
+          var css = "";
+          for (var key in obj){
+            css += key + " { ";
+            for (var attr in obj[key]){
+              css += attr + ":" + obj[key][attr] + ";";
+            }
+            css += " } ";
+          }
+          return css;
+        };
+        
+        template.writingPrompt = function(tropes){
+          
+          boum.click("#more-tropes",function(){
+            $("#prompted-tropes").html( template.tropeLinks( _.sample(tropes,3)  ) );
+          });
+          
+          var d = "";
+          d += "<h1>Tropevore</h1>";
+          d += "<p>writing prompts, made while you wait.</p>";
+          d += "<div id='prompted-tropes'></div>";
+          d += "<button id='more-tropes'>May I Have Some More Tropes Please</button>";
+          return d;
+        };
+        
+        $(document).ready(function(){
+          app.CSS(template.css(css) );
+          app.DOM('writing-prompt', template.writingPrompt(tropes) );
+          app.DOM('tropes', template.tropeLinks(tropes));
+          
+          return app;
+        });
+        
+      })();
+    </script>
+  </head>
+</html>

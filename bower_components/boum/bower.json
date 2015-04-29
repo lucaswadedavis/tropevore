@@ -1,0 +1,21 @@
+{
+  "name": "boum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lucaswadedavis/boum",
+  "authors": [
+    "Luke Davis <lucaswadedavis@gmail.com>"
+  ],
+  "description": "fire-and-forget event listener delegation to the body tag so listeners can be set on dom nodes that don't currently exist.",
+  "main": "boum.js",
+  "dependencies"  : {
+    "jquery"  : ">=1.10.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

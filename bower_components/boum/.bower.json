@@ -1,0 +1,30 @@
+{
+  "name": "boum",
+  "homepage": "https://github.com/lucaswadedavis/boum",
+  "authors": [
+    "Luke Davis <lucaswadedavis@gmail.com>"
+  ],
+  "description": "fire-and-forget event listener delegation to the body tag so listeners can be set on dom nodes that don't currently exist.",
+  "main": "boum.js",
+  "dependencies": {
+    "jquery": ">=1.10.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2d1c416c40",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2d1c416c4007afba4911d9ece9caf29f53295a45"
+  },
+  "_source": "git://github.com/lucaswadedavis/boum.git",
+  "_target": "*",
+  "_originalSource": "boum",
+  "_direct": true
+}
